@@ -18,15 +18,15 @@ final class AuthViewModel: ObservableObject {
     
     private var cancellables: [AnyCancellable] = []
     private let authService: AuthServiceProtocol
-    private let mode: Mode
     
-    init(authService: AuthServiceProtocol = AuthService(), mode: Mode) {
+    private static let shared = AuthViewModel()
+    
+    init(authService: AuthServiceProtocol = AuthService()) {
         self.authService = authService
-        self.mode = mode
         getCurrentUser()
     }
     
-    func auth(email: String, password: String) {
+    func auth(email: String, password: String, mode: Mode) {
         switch mode {
         case .login:
             authService.signInWithEmailAndPassword(email: email, password: password).sink { completion in
