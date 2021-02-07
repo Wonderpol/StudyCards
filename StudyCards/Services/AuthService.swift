@@ -18,8 +18,9 @@ protocol AuthServiceProtocol {
 final class AuthService: AuthServiceProtocol {
     
     func currentUser() -> AnyPublisher<User?, Never> {
-        Just(Auth.auth().currentUser).eraseToAnyPublisher()
-    }
+        return Just(Auth.auth().currentUser)
+            .eraseToAnyPublisher()
+        }
     
     func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
         return Future<Void, Error> { promise in
