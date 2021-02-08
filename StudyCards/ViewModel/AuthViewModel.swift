@@ -23,7 +23,7 @@ final class AuthViewModel: ObservableObject {
     
     init(authService: AuthServiceProtocol = AuthService()) {
         self.authService = authService
-        getCurrentUser()
+        self.userSession = authService.currentuser
     }
     
     func auth(email: String, password: String, mode: Mode) {
@@ -50,12 +50,6 @@ final class AuthViewModel: ObservableObject {
             } receiveValue: { _ in }
             .store(in: &cancellables)
         }
-    }
-    
-    private func getCurrentUser() {
-        authService.currentUser().sink { user in
-            self.userSession = user
-        }.store(in: &cancellables)
     }
     
 }

@@ -10,18 +10,16 @@ import Combine
 import FirebaseAuth
 
 protocol AuthServiceProtocol {
-    func currentUser() -> AnyPublisher<User?, Never>
+    var currentuser: User? { get }
     func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error>
     func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error>
+    func logout() -> AnyPublisher<Void, Error>
 }
 
 final class AuthService: AuthServiceProtocol {
     
-    func currentUser() -> AnyPublisher<User?, Never> {
-        return Just(Auth.auth().currentUser)
-            .eraseToAnyPublisher()
-        }
-    
+    let currentuser = Auth.auth().currentUser
+
     func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
         return Future<Void, Error> { promise in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -46,4 +44,14 @@ final class AuthService: AuthServiceProtocol {
         }.eraseToAnyPublisher()
     }
     
+    func logout() -> AnyPublisher<Void, Error> {
+        return Future<Void, Error> { promise in
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                return promise(.failure(signOutError))
+            }
+            return promise(.success(()))
+        }.eraseToAnyPublisher()
+    }
 }
