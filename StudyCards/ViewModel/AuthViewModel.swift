@@ -52,6 +52,18 @@ final class AuthViewModel: ObservableObject {
         }
     }
     
+    func singOut() {
+        authService.logout().sink { completion in
+            switch completion {
+            case .finished:
+                print("DEBUG: SingOut with success")
+            case let .failure(error):
+                print("DEBUG: SingOut with error(\(error.localizedDescription)")
+            }
+        } receiveValue: { _ in }
+        .store(in: &cancellables)
+    }
+    
 }
 
 extension AuthViewModel {
