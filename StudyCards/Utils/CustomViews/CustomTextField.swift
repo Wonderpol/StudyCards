@@ -11,6 +11,7 @@ struct CustomTextField: View {
     @Binding var text: String
     let placeholder: Text
     let imageName: String
+    
     var body: some View {
         ZStack (alignment: .leading) {
             if text.isEmpty {
@@ -27,9 +28,7 @@ struct CustomTextField: View {
                     .foregroundColor(.primary)
                 
                 TextField("", text: $text).autocapitalization(.none)
-                
             }
-            
         }
     }
 }

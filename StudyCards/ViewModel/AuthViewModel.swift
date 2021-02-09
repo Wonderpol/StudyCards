@@ -16,6 +16,9 @@ final class AuthViewModel: ObservableObject {
     @Published var isFormValid = false
     @Published var userSession: User?
     
+    @Published var error: StudyCardsError?
+    @Published var isInProgress: Bool = false
+    
     private var cancellables: [AnyCancellable] = []
     private let authService: AuthServiceProtocol
     
@@ -29,23 +32,29 @@ final class AuthViewModel: ObservableObject {
     func auth(email: String, password: String, mode: Mode) {
         switch mode {
         case .login:
+            self.isInProgress = true
             authService.signInWithEmailAndPassword(email: email, password: password).sink { completion in
+                self.isInProgress = false
                 switch completion {
                 case let .failure(error):
-                    print("DEBUG: \(error.localizedDescription)")
+                    self.error = error
                 case .finished:
                     print("DEBUG: Succesfully logged in")
+                    break
                 }
             } receiveValue: { _ in }
             .store(in: &cancellables)
             
         case .createUser:
+            self.isInProgress = true
             authService.signUpWithEmailAndPassword(email: email, password: password).sink { completion in
+                self.isInProgress = false
                 switch completion {
                 case let .failure(error):
-                    print("DEBUG: \(error.localizedDescription)")
+                    self.error = error
                 case .finished:
                     print("DEBUG: Succesfully registered new user")
+                    break
                 }
             } receiveValue: { _ in }
             .store(in: &cancellables)
@@ -53,12 +62,15 @@ final class AuthViewModel: ObservableObject {
     }
     
     func singOut() {
+        self.isInProgress = true
         authService.logout().sink { completion in
+            self.isInProgress = false
             switch completion {
             case .finished:
                 print("DEBUG: SingOut with success")
+                break
             case let .failure(error):
-                print("DEBUG: SingOut with error(\(error.localizedDescription)")
+                self.error = error
             }
         } receiveValue: { _ in }
         .store(in: &cancellables)

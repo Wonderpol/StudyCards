@@ -11,20 +11,20 @@ import FirebaseAuth
 
 protocol AuthServiceProtocol {
     var currentuser: User? { get }
-    func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error>
-    func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error>
-    func logout() -> AnyPublisher<Void, Error>
+    func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, StudyCardsError>
+    func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, StudyCardsError>
+    func logout() -> AnyPublisher<Void, StudyCardsError>
 }
 
 final class AuthService: AuthServiceProtocol {
     
     let currentuser = Auth.auth().currentUser
 
-    func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
+    func signUpWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, StudyCardsError> {
+        return Future<Void, StudyCardsError> { promise in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
                 if let error = error {
-                    return promise(.failure(error))
+                    return promise(.failure(.authError(description: error.localizedDescription)))
                 } else {
                     return promise(.success(()))
                 }
@@ -32,11 +32,11 @@ final class AuthService: AuthServiceProtocol {
         }.eraseToAnyPublisher()
     }
  
-    func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
+    func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, StudyCardsError> {
+        return Future<Void, StudyCardsError> { promise in
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
                 if let error = error {
-                    return promise(.failure(error))
+                    return promise(.failure(.authError(description: error.localizedDescription)))
                 } else {
                     return promise(.success(()))
                 }
@@ -44,12 +44,12 @@ final class AuthService: AuthServiceProtocol {
         }.eraseToAnyPublisher()
     }
     
-    func logout() -> AnyPublisher<Void, Error> {
-        return Future<Void, Error> { promise in
+    func logout() -> AnyPublisher<Void, StudyCardsError> {
+        return Future<Void, StudyCardsError> { promise in
             do {
                 try Auth.auth().signOut()
             } catch let signOutError as NSError {
-                return promise(.failure(signOutError))
+                return promise(.failure(.authError(description: signOutError.localizedDescription)))
             }
             return promise(.success(()))
         }.eraseToAnyPublisher()
