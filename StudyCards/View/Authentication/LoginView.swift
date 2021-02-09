@@ -92,7 +92,8 @@ struct LoginView: View {
         static var previews: some View {
             Group {
                 LoginView().previewDevice("iPhone 12")
-                LoginView().previewDevice("iPhone 8")
+//                LoginView().previewDevice("iPhone 8")
+//                LoginView().previewDevice("iPhone 6s")
             }
         }
     }
