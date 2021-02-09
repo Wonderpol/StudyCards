@@ -16,7 +16,7 @@ struct CustomTextField: View {
         ZStack (alignment: .leading) {
             if text.isEmpty {
                 placeholder
-                    .foregroundColor(Color(.init(white: 1, alpha: 0.87)))
+                    .foregroundColor(Color.gray)
                     .padding(.leading, 40)
             }
             
@@ -25,11 +25,12 @@ struct CustomTextField: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 20, height: 20)
-                    .foregroundColor(.primary)
+                    .foregroundColor(Color(.systemGray))
                 
                 TextField("", text: $text).autocapitalization(.none)
             }
         }
+        .padding()
     }
 }
 

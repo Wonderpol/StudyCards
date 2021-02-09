@@ -17,12 +17,12 @@ final class AuthViewModel: ObservableObject {
     @Published var userSession: User?
     
     @Published var error: StudyCardsError?
-    @Published var isInProgress: Bool = false
+    @Published var isInProgress = false
     
     private var cancellables: [AnyCancellable] = []
     private let authService: AuthServiceProtocol
     
-    private static let shared = AuthViewModel()
+    static let shared = AuthViewModel()
     
     init(authService: AuthServiceProtocol = AuthService()) {
         self.authService = authService

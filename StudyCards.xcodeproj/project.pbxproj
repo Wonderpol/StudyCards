@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D383DA0E25D2BCAB00798200 /* StudyCardsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383DA0D25D2BCAB00798200 /* StudyCardsError.swift */; };
+		D383DA1A25D3107700798200 /* OneSideRoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D383DA1925D3107600798200 /* OneSideRoundedRectangle.swift */; };
 		D3E1DDC225D00FBE005795BD /* StudyCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E1DDC125D00FBE005795BD /* StudyCardsApp.swift */; };
 		D3E1DDC425D00FBE005795BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E1DDC325D00FBE005795BD /* ContentView.swift */; };
 		D3E1DDC625D00FC0005795BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3E1DDC525D00FC0005795BD /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		D383DA0D25D2BCAB00798200 /* StudyCardsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyCardsError.swift; sourceTree = "<group>"; };
+		D383DA1925D3107600798200 /* OneSideRoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneSideRoundedRectangle.swift; sourceTree = "<group>"; };
 		D3E1DDBE25D00FBE005795BD /* StudyCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E1DDC125D00FBE005795BD /* StudyCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyCardsApp.swift; sourceTree = "<group>"; };
 		D3E1DDC325D00FBE005795BD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				D3E1DE0325D07259005795BD /* CustomViews */,
 				D3E1DDEE25D04A15005795BD /* Color+Extension.swift */,
 				D383DA0D25D2BCAB00798200 /* StudyCardsError.swift */,
+				D383DA1925D3107600798200 /* OneSideRoundedRectangle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E1DDF225D04C53005795BD /* LoginView.swift in Sources */,
+				D383DA1A25D3107700798200 /* OneSideRoundedRectangle.swift in Sources */,
 				D3E1DDCB25D00FC0005795BD /* Persistence.swift in Sources */,
 				D383DA0E25D2BCAB00798200 /* StudyCardsError.swift in Sources */,
 				D3E1DDEF25D04A15005795BD /* Color+Extension.swift in Sources */,
