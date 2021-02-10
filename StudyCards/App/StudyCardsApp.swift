@@ -19,9 +19,10 @@ struct StudyCardsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(AuthViewModel.shared)
+//            ContentView()
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environmentObject(AuthViewModel.shared)
+            LoginView()
         }
     }
 }

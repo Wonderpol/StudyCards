@@ -19,7 +19,6 @@ struct LoginView: View {
                 VStack {
                     VStack {
                         
-                        
                         Text("Memorizer app")
                             .font(.headline)
                             .padding(.leading, 20)
@@ -42,14 +41,14 @@ struct LoginView: View {
                         
                         Spacer()
                         
-                    }.frame(width: geometry.size.width, height: (geometry.size.height)/3)
+                    }.frame(width: geometry.size.width, height: 200)
                     .background(OneSideRoundedRectangle(radius: 25.0).fill(Color.mainColor).overlay(
                                     
                                     HStack {
                                         Image("logo")
                                             .resizable()
                                             .scaledToFit()
-                                            .frame(width: 200, height: 200, alignment: .bottom)
+                                            .frame(width: 150, height: 150, alignment: .bottom)
                                     }
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing))
                     )
@@ -71,6 +70,7 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                             
                         })
+                        .disabled(true)
                         .frame(width: geometry.size.width - 40, height: 55)
                         .background(Color.mainColor)
                         .cornerRadius(15)
@@ -119,13 +119,16 @@ struct LoginView: View {
                     
                     VStack {
                         Text("Don't have an account?")
+                            .foregroundColor(Color(.systemGray))
                             .bold()
                         
-                        Text("Sign Up")
-                            .bold()
-                            .padding(.top, 2)
-                            .foregroundColor(Color.mainColor)
-                            .padding(.bottom, 50)
+                        Button(action: {}, label: {
+                            Text("Sign Up")
+                                .bold()
+                                .padding(.top, 2)
+                                .foregroundColor(Color.mainColor)
+                                .padding(.bottom, 50)
+                        })
                     }.padding(.top, 30)
                     
                 }
@@ -137,7 +140,7 @@ struct LoginView: View {
         static var previews: some View {
             Group {
                 LoginView().previewDevice("iPhone 12")
-                //                LoginView().previewDevice("iPhone 8")
+//                                LoginView().previewDevice("iPhone 8")
             }
         }
     }
