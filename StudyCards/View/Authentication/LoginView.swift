@@ -17,37 +17,42 @@ struct LoginView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    VStack(alignment: .leading) {
-                        Text("Memorizer App")
+                    VStack {
+                        
+                        
+                        Text("Memorizer app")
                             .font(.headline)
                             .padding(.leading, 20)
                             .padding(.top, 40)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
                         
-                        VStack(alignment: .leading) {
-                            Text("Learn and")
-                            
-                            HStack {
-                                Text("Get")
-                                Text("Rewards").bold()
-                            }
-                            
-                        }.padding(.leading, 20)
-                        .padding(.top, 10)
-                        .font(.system(size: 25))
+                        Text("Learn by")
+                            .font(.title)
+                            .padding(.leading, 20)
+                            .padding(.top, 5)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                        
+                        HStack {
+                            Text("Having")
+                            Text("Fun").bold()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .topLeading)
+                        .padding(.leading, 20)
+                        .font(.title)
                         
                         Spacer()
                         
-                        HStack {
-                            
-                            Spacer()
-                            
-                            Image("logo")
-                                .resizable()
-                                .scaledToFit()
-                        }
-                        
-                    }.frame(width: geometry.size.width, height: (geometry.size.height)/1.9, alignment: .topLeading)
-                    .background(OneSideRoundedRectangle(radius: 25.0).fill(Color.mainColor))
+                    }.frame(width: geometry.size.width, height: (geometry.size.height)/3)
+                    .background(OneSideRoundedRectangle(radius: 25.0).fill(Color.mainColor).overlay(
+                                    
+                                    HStack {
+                                        Image("logo")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 200, height: 200, alignment: .bottom)
+                                    }
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing))
+                    )
                     .foregroundColor(.white)
                     
                     VStack(spacing: 20) {
@@ -65,23 +70,63 @@ struct LoginView: View {
                             Text("Sign In")
                                 .foregroundColor(.white)
                             
-                        }).frame(width: geometry.size.width - 40, height: 55)
+                        })
+                        .frame(width: geometry.size.width - 40, height: 55)
                         .background(Color.mainColor)
                         .cornerRadius(15)
                         
-                    }.padding(.horizontal, 20)
+                    }
+                    .padding(.horizontal, 20)
                     .padding(.top, 10)
+                    
+                    Text("Another login options")
+                        .font(.footnote)
+                        .foregroundColor(Color(.systemGray))
+                        .padding(.top, 10)
+                    
+                    HStack(spacing: 40) {
+                        Button(action: {}, label: {
+                            
+                            Image(systemName: "applelogo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.white)
+                                .padding(5)
+                            
+                        })
+                        .frame(width: (geometry.size.width - 40)/3)
+                        .background(Color.mainColor)
+                        .cornerRadius(15)
+                        
+                        Button(action: {}, label: {
+                            
+                            Image(systemName: "applelogo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.white)
+                                .padding(5)
+                            
+                        })
+                        .frame(width: (geometry.size.width - 40)/3)
+                        .background(Color.mainColor)
+                        .cornerRadius(15)
+                        
+                    }.padding(.top, 5)
                     
                     Spacer()
                     
-                    Text("Don't have an account?")
-                        .bold()
-                    
-                    Text("Sign Up")
-                        .bold()
-                        .padding(.top, 2)
-                        .foregroundColor(Color.mainColor)
-                        .padding(.bottom, 50)
+                    VStack {
+                        Text("Don't have an account?")
+                            .bold()
+                        
+                        Text("Sign Up")
+                            .bold()
+                            .padding(.top, 2)
+                            .foregroundColor(Color.mainColor)
+                            .padding(.bottom, 50)
+                    }.padding(.top, 30)
                     
                 }
             }
@@ -92,8 +137,7 @@ struct LoginView: View {
         static var previews: some View {
             Group {
                 LoginView().previewDevice("iPhone 12")
-//                LoginView().previewDevice("iPhone 8")
-//                LoginView().previewDevice("iPhone 6s")
+                //                LoginView().previewDevice("iPhone 8")
             }
         }
     }
