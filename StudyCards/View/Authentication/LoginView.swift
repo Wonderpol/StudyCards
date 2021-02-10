@@ -41,7 +41,8 @@ struct LoginView: View {
                         
                         Spacer()
                         
-                    }.frame(width: geometry.size.width, height: 200)
+                    }
+                    .frame(width: geometry.size.width, height: (geometry.size.height * 0.35))
                     .background(OneSideRoundedRectangle(radius: 25.0).fill(Color.mainColor).overlay(
                                     
                                     HStack {
@@ -64,20 +65,19 @@ struct LoginView: View {
                             .background(Color.customTextInputColor)
                             .cornerRadius(15)
                         
-                        Button(action: {}, label: {
+                        Button(action: { viewModel.auth(email: email, password: password, mode: .login) }, label: {
                             
                             Text("Sign In")
                                 .foregroundColor(.white)
                             
                         })
-                        .disabled(true)
                         .frame(width: geometry.size.width - 40, height: 55)
                         .background(Color.mainColor)
                         .cornerRadius(15)
                         
                     }
                     .padding(.horizontal, 20)
-                    .padding(.top, 10)
+                    .padding(.top, 40)
                     
                     Text("Another login options")
                         .font(.footnote)
@@ -85,28 +85,28 @@ struct LoginView: View {
                         .padding(.top, 10)
                     
                     HStack(spacing: 40) {
-                        Button(action: {}, label: {
+                        Button(action: { viewModel.singOut() }, label: {
                             
                             Image(systemName: "applelogo")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 40, height: 40)
+                                .frame(width: 30, height: 30)
                                 .foregroundColor(.white)
-                                .padding(5)
+                                .padding(10)
                             
                         })
                         .frame(width: (geometry.size.width - 40)/3)
                         .background(Color.mainColor)
                         .cornerRadius(15)
                         
-                        Button(action: {}, label: {
+                        Button(action: { print(viewModel.getUserUid() as Any) }, label: {
                             
                             Image(systemName: "applelogo")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 40, height: 40)
+                                .frame(width: 30, height: 30)
                                 .foregroundColor(.white)
-                                .padding(5)
+                                .padding(10)
                             
                         })
                         .frame(width: (geometry.size.width - 40)/3)
@@ -117,21 +117,20 @@ struct LoginView: View {
                     
                     Spacer()
                     
-                    VStack {
-                        Text("Don't have an account?")
-                            .foregroundColor(Color(.systemGray))
-                            .bold()
-                        
-                        Button(action: {}, label: {
-                            Text("Sign Up")
-                                .bold()
-                                .padding(.top, 2)
-                                .foregroundColor(Color.mainColor)
-                                .padding(.bottom, 50)
-                        })
-                    }.padding(.top, 30)
-                    
                 }
+                VStack {
+                    Text("Don't have an account?")
+                        .foregroundColor(Color(.systemGray))
+                        .bold()
+                    
+                    Button(action: {}, label: {
+                        Text("Sign Up")
+                            .bold()
+                            .padding(.top, 2)
+                            .foregroundColor(Color.mainColor)
+                    })
+                }.frame(maxHeight: .infinity, alignment: .bottom)
+                .padding(.bottom, 30)
             }
             .ignoresSafeArea(edges: .all)
         }
@@ -139,8 +138,8 @@ struct LoginView: View {
     struct LoginView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
-                LoginView().previewDevice("iPhone 12")
-//                                LoginView().previewDevice("iPhone 8")
+//                LoginView().previewDevice("iPhone 12")
+//                LoginView().previewDevice("iPhone 8")
             }
         }
     }

@@ -27,7 +27,9 @@ struct CustomTextField: View {
                     .frame(width: 20, height: 20)
                     .foregroundColor(Color(.systemGray))
                 
-                TextField("", text: $text).autocapitalization(.none)
+                TextField("", text: $text)
+                    .autocapitalization(.none)
+                    .foregroundColor(Color.mainColor)
             }
         }
         .padding()

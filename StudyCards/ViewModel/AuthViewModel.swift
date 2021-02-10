@@ -10,6 +10,8 @@ import Combine
 import Firebase
 
 final class AuthViewModel: ObservableObject {
+
+    typealias userId = String?
     
     @Published var emailText = ""
     @Published var passwordText = ""
@@ -37,7 +39,7 @@ final class AuthViewModel: ObservableObject {
                 self.isInProgress = false
                 switch completion {
                 case let .failure(error):
-                    self.error = error
+                    print(error)
                 case .finished:
                     print("DEBUG: Succesfully logged in")
                     break
@@ -74,6 +76,10 @@ final class AuthViewModel: ObservableObject {
             }
         } receiveValue: { _ in }
         .store(in: &cancellables)
+    }
+    
+    func getUserUid() -> userId {
+        return authService.currentuser?.uid
     }
     
 }
